@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Challenge NodeJS Login</title>
+</head>
+<body>
+    <form action="#" method="POST">
+        <label for="usuario">Usuario:</label>
+        <input type="text" name="usuario" id="usuario" placeholder="Usuario">
+        <label for="password"></label>
+        <input type="password" name="password" id="password" placeholder="Password">
+        <input type="hidden" id="uid">
+        <input type="submit" value="Login" id="btnLogin">
+      </form>    
+    <script src="https://code.jquery.com/jquery-1.11.1.js"></script>    
+    <script src="https://www.gstatic.com/firebasejs/6.2.0/firebase-app.js"></script>    
+    <script src="https://www.gstatic.com/firebasejs/6.2.0/firebase-auth.js"></script>
+    <script>
+      $(function () {
+        var config = {
+            apiKey: "AIzaSyCr67wg6lFCNMoUkyaS2GvvKcO9QAhCYqE",
+            authDomain: "nodechallenge-424c1.firebaseapp.com",
+            databaseURL: "https://nodechallenge-424c1.firebaseio.com",
+            projectId: "nodechallenge-424c1",
+            storageBucket: "nodechallenge-424c1.appspot.com",
+            messagingSenderId: "198380806724",
+            appId: "1:198380806724:web:40d57506473d3f31f39211"
+        };
+        firebase.initializeApp(config);
+        $('#btnLogin').click(function(e){
+            e.preventDefault();
+            var email = $('#usuario').val();
+            var password = $('#password').val();
+            firebase.auth().signInWithEmailAndPassword(email, password)
+                .then(function (user) {                      
+                    console.log("Login correcto");
+                    window.location.href = "http://localhost:3030";
+                });
+        });
+      });
+    </script>
+</body>
+</html>
