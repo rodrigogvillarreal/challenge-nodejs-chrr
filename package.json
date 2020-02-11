@@ -1,0 +1,24 @@
+{
+  "name": "challenge-nodejs-chrr",
+  "version": "1.0.0",
+  "description": "Challenge NodeJS (CHRR)",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/rodrigogvillarreal/challenge-nodejs-chrr.git"
+  },
+  "keywords": [
+    "challenge",
+    "nodejs"
+  ],
+  "author": "Rodrigo Villarreal",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/rodrigogvillarreal/challenge-nodejs-chrr/issues"
+  },
+  "homepage": "https://github.com/rodrigogvillarreal/challenge-nodejs-chrr#readme"
+}
