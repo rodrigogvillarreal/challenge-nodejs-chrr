@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Challenge NodeJS</title>
+</head>
+<body>
+    <span id="login_info">Cargando...</span>
+    <a href="#" id="lnkSalir" style="display: none;">Salir</a>
+    <a href="/login" id="lnkIngresar" style="display: none;">Ingresar</a>
+    <script src="https://code.jquery.com/jquery-1.11.1.js"></script>    
+    <script src="https://www.gstatic.com/firebasejs/6.2.0/firebase-app.js"></script>    
+    <script src="https://www.gstatic.com/firebasejs/6.2.0/firebase-auth.js"></script>
+    <script>
+        $(function () {
+          var config = {
+              apiKey: "AIzaSyCr67wg6lFCNMoUkyaS2GvvKcO9QAhCYqE",
+              authDomain: "nodechallenge-424c1.firebaseapp.com",
+              databaseURL: "https://nodechallenge-424c1.firebaseio.com",
+              projectId: "nodechallenge-424c1",
+              storageBucket: "nodechallenge-424c1.appspot.com",
+              messagingSenderId: "198380806724",
+              appId: "1:198380806724:web:40d57506473d3f31f39211"
+          };
+          firebase.initializeApp(config);     
+          firebase.auth().onAuthStateChanged(function(user) {
+                var usuario = Array();
+                if (user) {
+                    usuario.push({
+                        email: user.email,
+                        uid: user.uid
+                    });                    
+                    $('#login_info').html('Usuario logueado: <strong>'+usuario[0].email+'</strong>');
+                    $('#lnkSalir').show();
+                    firebase.auth().currentUser.getIdToken(true).then(function(idToken) {
+                        $.post('/login', { token: idToken });                   
+                    });
+                }else{
+                    $('#login_info').html('Usuario NO logueado');
+                    $('#lnkIngresar').show();                        
+                }       
+            });
+            $("#lnkSalir").click(function(){
+                firebase.auth().signOut();
+                $('#lnkSalir').hide();
+            });
+        });
+      </script>           
+</body>
+</html>
