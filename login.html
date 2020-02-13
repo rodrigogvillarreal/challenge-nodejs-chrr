@@ -37,6 +37,9 @@
             firebase.auth().signInWithEmailAndPassword(email, password)
                 .then(function (user) {                      
                     console.log("Login correcto");
+                    firebase.auth().currentUser.getIdToken(true).then(function(idToken) {
+                        $.post('/login', { token: idToken });                   
+                    });                    
                     window.location.href = "http://localhost:3030";
                 });
         });

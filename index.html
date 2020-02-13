@@ -34,9 +34,6 @@
                     });                    
                     $('#login_info').html('Usuario logueado: <strong>'+usuario[0].email+'</strong>');
                     $('#lnkSalir').show();
-                    firebase.auth().currentUser.getIdToken(true).then(function(idToken) {
-                        $.post('/login', { token: idToken });                   
-                    });
                 }else{
                     $('#login_info').html('Usuario NO logueado');
                     $('#lnkIngresar').show();                        
